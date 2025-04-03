@@ -1,24 +1,25 @@
 export default async function handler(req, res) {
-  // First try calling your Colab backend
+  // For testing - comment this out when Colab is ready
+  if (process.env.NODE_ENV === 'development') {
+    return res.status(200).json({
+      status: 'DEV MODE: API is working',
+      debug: req.body
+    });
+  }
+
+  // Production - call your Colab backend
   try {
-    const backendUrl = "https://5d24-35-194-18-219.ngrok-free.app/generate";
+    const backendUrl = process.env.COLAB_URL || "https://your-ngrok-url.ngrok-free.app/generate";
     const response = await fetch(backendUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(req.body)
     });
-    
-    // If Colab backend responds, forward its response
-    const data = await response.json();
-    return res.status(200).json(data);
-    
+    return res.status(200).json(await response.json());
   } catch (error) {
-    // Fallback if Colab fails
-    console.error("Colab backend failed, using fallback:", error);
-    res.status(200).json({ 
-      status: 'API is working (fallback mode)',
-      message: 'Hello from NAdX.ai!',
-      debug: req.body 
+    return res.status(500).json({
+      error: "Backend connection failed",
+      message: error.message
     });
   }
 }
