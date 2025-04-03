@@ -9,7 +9,7 @@ export default async function handler(req, res) {
 
   // Production - call your Colab backend
   try {
-    const backendUrl = process.env.COLAB_URL || "https://4c5f-34-125-25-161.ngrok-free.app/api/generate";
+    const backendUrl = process.env.COLAB_URL || "https://4c5f-34-125-25-161.ngrok-free.app";
     const response = await fetch(backendUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
