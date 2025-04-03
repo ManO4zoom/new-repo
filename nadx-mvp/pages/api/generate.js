@@ -1,8 +1,5 @@
 export default async function handler(req, res) {
   const backendUrl = "https://5d24-35-194-18-219.ngrok-free.app/generate";  // ← Paste Colab URL here
-  export default function handler(req, res) {
-  res.status(200).json({ message: "API is working" });
-} 
   try {
     const response = await fetch(backendUrl, {
       method: 'POST',
@@ -14,4 +11,12 @@ export default async function handler(req, res) {
   } catch (error) {
     res.status(500).json({ error: "API call failed" });
   }
+}
+
+// Simple test endpoint
+export default function handler(req, res) {
+  res.status(200).json({ 
+    status: 'API is working',
+    message: 'Hello from NAdX.ai!'
+  });
 }
