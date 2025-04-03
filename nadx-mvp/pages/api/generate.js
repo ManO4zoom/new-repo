@@ -1,6 +1,8 @@
 export default async function handler(req, res) {
   const backendUrl = "https://a3b4-35-194-18-219.ngrok-free.app";  // ← Paste Colab URL here
-  
+  export default function handler(req, res) {
+  res.status(200).json({ message: "API is working" });
+} 
   try {
     const response = await fetch(backendUrl, {
       method: 'POST',
