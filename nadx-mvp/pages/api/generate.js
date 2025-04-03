@@ -1,5 +1,5 @@
 export default async function handler(req, res) {
-  const backendUrl = "https://a3b4-35-194-18-219.ngrok-free.app/generate";  // ← Paste Colab URL here
+  const backendUrl = "https://a3b4-35-194-18-219.ngrok-free.app";  // ← Paste Colab URL here
   
   try {
     const response = await fetch(backendUrl, {
